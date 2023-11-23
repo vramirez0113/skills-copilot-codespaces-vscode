@@ -1,0 +1,20 @@
+// Create web server
+var server = http.createServer(function (req, res) {
+    // Get the path
+    var path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase();
+    // Route the path
+    switch (path) {
+        case '':
+            serveStaticFile(res, '/public/home.html', 'text/html');
+            break;
+        case '/about':
+            serveStaticFile(res, '/public/about.html', 'text/html');
+            break;
+        case '/img/logo.jpg':
+            serveStaticFile(res, '/public/img/logo.jpg', 'image/jpeg');
+            break;
+        default:
+            serveStaticFile(res, '/public/404.html', 'text/html', 404);
+            break;
+    }
+}
